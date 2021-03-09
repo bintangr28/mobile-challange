@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _submitButton() {
     return InkWell(
       onTap: () {
-        _showToast(context,'Masukan User Password dengan Benar..!');
+        _showToast(context);
       },
       child:Container(
         width: MediaQuery.of(context).size.width,
