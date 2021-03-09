@@ -36,12 +36,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
- void _showToast(BuildContext context,String message) {
+ void _showToast(BuildContext context) {
     final scaffold = Scaffold.of(context);
-    let message = message;
     scaffold.showSnackBar(
       SnackBar(
-        content: const Text(message),
+        content: const Text('Login Gagal'),
         action: SnackBarAction(
             label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
       ),
