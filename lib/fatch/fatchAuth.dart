@@ -4,14 +4,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<Album> fetchAlbum() async {
+Future<Auth> fetchAuth() async {
   final response =
       await http.get(Uri.https('jsonplaceholder.typicode.com', 'albums/1'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
+    return Auth.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -19,15 +19,15 @@ Future<Album> fetchAlbum() async {
   }
 }
 
-class Album {
+class Auth {
   final int userId;
   final int id;
   final String title;
 
-  Album({this.userId, this.id, this.title});
+  Auth({this.userId, this.id, this.title});
 
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
+  factory Auth.fromJson(Map<String, dynamic> json) {
+    return Auth(
       userId: json['userId'],
       id: json['id'],
       title: json['title'],
@@ -45,12 +45,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Future<Album> futureAlbum;
+  Future<Auth> futureAuth;
 
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    futureAuth = fetchAuth();
   }
 
   @override
@@ -65,8 +65,8 @@ class _MyAppState extends State<MyApp> {
           title: Text('Fetch Data Example'),
         ),
         body: Center(
-          child: FutureBuilder<Album>(
-            future: futureAlbum,
+          child: FutureBuilder<Auth>(
+            future: futureAuth,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Text(snapshot.data.title);
